@@ -1,8 +1,8 @@
-package com.brajesh.tickets.domain;
+package com.brajesh.tickets.domain.entities;
 
 import com.brajesh.tickets.common.AuditField;
-import com.brajesh.tickets.domain.enums.TicketValidationMethod;
-import com.brajesh.tickets.domain.enums.TicketValidationStatusEnum;
+import com.brajesh.tickets.domain.entities.enums.TicketValidationMethod;
+import com.brajesh.tickets.domain.entities.enums.TicketValidationStatusEnum;
 import jakarta.persistence.*;
 import lombok.*;
 

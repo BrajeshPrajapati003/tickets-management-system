@@ -1,7 +1,7 @@
-package com.brajesh.tickets.domain;
+package com.brajesh.tickets.domain.entities;
 
 import com.brajesh.tickets.common.AuditField;
-import com.brajesh.tickets.domain.enums.QrCodeStatusEnum;
+import com.brajesh.tickets.domain.entities.enums.QrCodeStatusEnum;
 import jakarta.persistence.*;
 import lombok.*;
 

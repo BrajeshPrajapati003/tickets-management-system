@@ -1,4 +1,4 @@
-package com.brajesh.tickets.domain;
+package com.brajesh.tickets.domain.entities;
 
 import com.brajesh.tickets.common.AuditField;
 import jakarta.persistence.*;
@@ -27,6 +27,9 @@ public class TicketType extends AuditField {
     @Column(name = "price", nullable = false)
     private Double price;
 
+    @Column(name = "description")
+    private String description;
+
     @Column(name = "total_available")
     private Integer totalAvailable;
 
@@ -41,11 +44,11 @@ public class TicketType extends AuditField {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         TicketType that = (TicketType) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(price, that.price) && Objects.equals(totalAvailable, that.totalAvailable);
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(price, that.price) && Objects.equals(description, that.description) && Objects.equals(totalAvailable, that.totalAvailable);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, price, totalAvailable);
+        return Objects.hash(id, name, price, description, totalAvailable);
     }
 }
