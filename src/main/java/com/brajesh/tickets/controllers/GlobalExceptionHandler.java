@@ -1,6 +1,9 @@
 package com.brajesh.tickets.controllers;
 
 import com.brajesh.tickets.domain.dtos.ErrorDto;
+import com.brajesh.tickets.exception.EventNotFoundException;
+import com.brajesh.tickets.exception.EventUpdateException;
+import com.brajesh.tickets.exception.TicketTypeNotFoundException;
 import com.brajesh.tickets.exception.UserNotFoundException;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +20,36 @@ import java.util.List;
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(EventUpdateException.class)
+    public ResponseEntity<ErrorDto> handleEventUpdateException(
+            EventUpdateException ex
+    ){
+        log.error("Caught EventUpdateException", ex);
+        ErrorDto errorDto = new ErrorDto();
+        errorDto.setError("Unable to update event");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDto);
+    }
+
+    @ExceptionHandler(TicketTypeNotFoundException.class)
+    public ResponseEntity<ErrorDto> handleTicketTypeNotFoundException(
+            TicketTypeNotFoundException ex
+    ){
+        log.error("Caught TicketTypeNotFoundException", ex);
+        ErrorDto errorDto = new ErrorDto();
+        errorDto.setError("Ticket type not found");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDto);
+    }
+
+    @ExceptionHandler(EventNotFoundException.class)
+    public ResponseEntity<ErrorDto> handleEventNotFoundException(
+            UserNotFoundException ex
+    ){
+        log.error("Caught EventNotFoundException", ex);
+        ErrorDto errorDto = new ErrorDto();
+        errorDto.setError("Event not found");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDto);
+    }
 
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ErrorDto> handleUserNotFoundException(

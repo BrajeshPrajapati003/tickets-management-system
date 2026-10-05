@@ -18,7 +18,7 @@ public class TicketType extends AuditField {
 
     @Id
     @Column(name = "id", nullable = false, updatable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(name = "name", nullable = false)

@@ -18,5 +18,5 @@ public class CreateTicketTypeResponseDto {
     private Integer totalAvailable;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private List<CreateTicketTypeRequestDto> ticketTypes;
+//    private List<CreateTicketTypeRequestDto> ticketTypes;
 }
