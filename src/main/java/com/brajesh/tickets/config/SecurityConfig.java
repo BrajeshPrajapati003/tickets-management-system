@@ -17,19 +17,24 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(
             HttpSecurity http,
-            UserProvisioningFilter userProvisioningFilter) throws Exception{
+            UserProvisioningFilter userProvisioningFilter,
+            JwtAuthenticationConverter jwtAuthenticationConverter
+    ) throws Exception{
 
         http
                 .authorizeHttpRequests(auth ->
                         auth
                                 .requestMatchers(HttpMethod.GET, "/api/v1/published-events/**").permitAll()
+                                .requestMatchers("/api/v1/events").hasRole("ORGANIZER")
                                 // Catch all rule
                                 .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(oauth2 ->
-                        oauth2.jwt(Customizer.withDefaults()))
+                        oauth2.jwt(jwt ->
+                                        jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)
+                        ))
                 .addFilterAfter(userProvisioningFilter, BearerTokenAuthenticationFilter.class);
 
         return http.build();

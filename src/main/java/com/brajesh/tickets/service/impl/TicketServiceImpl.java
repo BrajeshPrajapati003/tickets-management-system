@@ -1,0 +1,23 @@
+package com.brajesh.tickets.service.impl;
+
+import com.brajesh.tickets.domain.entities.Ticket;
+import com.brajesh.tickets.repository.TicketRepository;
+import com.brajesh.tickets.service.TicketService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import java.util.UUID;
+
+@Service
+@RequiredArgsConstructor
+public class TicketServiceImpl implements TicketService {
+
+    private final TicketRepository ticketRepository;
+
+    @Override
+    public Page<Ticket> listTicketForUser(UUID userId, Pageable pageable) {
+        return ticketRepository.findByPurchaserId(userId, pageable);
+    }
+}
