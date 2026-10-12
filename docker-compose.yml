@@ -7,7 +7,7 @@ services:
       - "5432:5432"
     restart: always
     environment:
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-changemeinprod!}
 
 
   # DB management interface for visual representation
@@ -22,8 +22,8 @@ services:
     ports:
       - "19090:8080"
     environment:
-      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN}
-      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+      KEYCLOAK_ADMIN: ${KEYCLOAK_ADMIN:-admin}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:-admin@pass}
     volumes:
       - keycloak-data:/opt/keycloak/data
     command:

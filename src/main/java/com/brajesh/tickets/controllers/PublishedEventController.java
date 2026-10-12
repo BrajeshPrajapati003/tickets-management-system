@@ -41,9 +41,9 @@ public class PublishedEventController {
 
     @GetMapping(path = "/{eventId}")
     public ResponseEntity<GetPublishedEventDetailsResponseDto> getPublishedEventDetails(
-            @PathVariable UUID evenId
+            @PathVariable UUID eventId
             ){
-        return eventService.getPublishedEvents(evenId)
+        return eventService.getPublishedEvents(eventId)
                 .map(eventMapper::toGetPublishedEventDetailsResponseDto)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

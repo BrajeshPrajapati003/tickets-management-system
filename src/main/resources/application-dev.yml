@@ -29,3 +29,4 @@ spring:
           issuer-uri: ${SPRING_JWT_ISSUER_URI:http://localhost:19090/realms/event-ticket-platform}
 
 debug: true
+
