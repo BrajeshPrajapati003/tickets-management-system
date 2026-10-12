@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: tickets
+
+  output:
+    ansi:
+      enabled: always
+
+  datasource:
+    url: ${SPRING_DB_URL:jdbc:postgresql://localhost:5432/postgres}
+    username: ${SPRING_DB_USERNAME:postgres}
+    password: ${SPRING_DB_PASSWORD:changemeinprod!}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${SPRING_JWT_ISSUER_URI:http://localhost:19090/realms/event-ticket-platform}
+
+debug: true

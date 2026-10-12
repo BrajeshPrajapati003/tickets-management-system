@@ -1,3 +1,6 @@
+server:
+  port: 9090
+
 spring:
   application:
     name: tickets
@@ -7,9 +10,9 @@ spring:
       enabled: always
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: changemeinprod!
+    url: ${SPRING_DB_URL}
+    username: ${SPRING_DB_USERNAME}
+    password: ${SPRING_DB_PASSWORD}
 
   jpa:
     hibernate:
@@ -23,6 +26,6 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:19090/realms/event-ticket-platform
+          issuer-uri: ${SPRING_JWT_ISSUER_URI}
 
 debug: true
